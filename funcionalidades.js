@@ -1,3 +1,3 @@
 function comecar() {
-    alert('Bem vindo')
+    window.location.href = 'https://www.google.com'
 }
