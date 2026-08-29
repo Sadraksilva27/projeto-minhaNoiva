@@ -1,4 +1,5 @@
-function comecar() {
+  let pontos = 0
+  function comecar() {
    let inicio = document.getElementById('start')
    inicio.style.display = 'none'
 
@@ -9,10 +10,13 @@ function comecar() {
     <h2>Pergunta 1</h2>
     <p>Onde foi nosso primeiro beijo?</p>
    
-      <button class="alternativa">Praça</button><br>
-      <button class="alternativa">Área de lazer</button><br>
-      <button class="alternativa">Piscina</button><br>
-      <button class="alternativa">Casa do seu pai </button><br>
+      <button class="alternativa" onclick="verificarResposta('Praça')">Praça</button><br>
+
+<button class="alternativa" onclick="verificarResposta('Área de lazer')">Área de lazer</button><br>
+
+<button class="alternativa" onclick="verificarResposta('Piscina')">Piscina</button><br>
+
+<button class="alternativa" onclick="verificarResposta('Casa do seu pai')">Casa do seu pai</button><br>
       
     <input type="button" value="Voltar ao início" onclick="voltarInicio()">
 `
@@ -24,3 +28,11 @@ voltar.style.display = 'block'
 let quiz = document.getElementById('quiz')
 quiz.style.display = 'none'
 }
+
+function verificarResposta(resposta) {
+if(resposta == "Área de lazer") {
+ pontos++
+}
+
+}
+onclick="verificarResposta"
