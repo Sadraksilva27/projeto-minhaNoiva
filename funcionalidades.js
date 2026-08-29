@@ -141,6 +141,7 @@ function verificarResposta(resposta) {
             pergunta.innerHTML = `
                 <h2>Você realmente me conhece! ❤️</h2>
                 <p>Você acertou ${pontos} de 5 perguntas!</p>
+                   <input type="button" value="Voltar ao início" onclick="voltarInicio()">
             `
 
         } else if (pontos >= 3) {
@@ -148,6 +149,7 @@ function verificarResposta(resposta) {
             pergunta.innerHTML = `
                 <h2>Até que você me conhece bem! 😂</h2>
                 <p>Você acertou ${pontos} de 5 perguntas!</p>
+                   <input type="button" value="Voltar ao início" onclick="voltarInicio()">
             `
 
         } else {
@@ -155,6 +157,7 @@ function verificarResposta(resposta) {
             pergunta.innerHTML = `
                 <h2>Precisamos conversar... 👀</h2>
                 <p>Você acertou ${pontos} de 5 perguntas!</p>
+                   <input type="button" value="Voltar ao início" onclick="voltarInicio()">
             `
         }
     }
