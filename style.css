@@ -28,11 +28,12 @@ input{
 
 .alternativa {
     display: block;
-    width: 70px;
-    margin: 2px;
+    width: 90px;
+    margin: 5px;
     height: 40px;
     border-radius: 10px;
     font-size: 15px;
+    cursor: pointer;
    
     
 }
