@@ -1,165 +1,108 @@
 
 let pontos = 0
-let perguntaAtual = 1
-let Bruna = "Bruna"
-
+let perguntaAtual = 0
+ 
+let perguntas = [
+    {
+        questão: 'Qual a minha maior Qualidade ?',
+        alternativas: ['Carinhoso', 'Amigável', 'Paciente', 'Parceiro'],
+        correta: 'Paciente'
+    },
+    {
+        questão: 'Qual a parte do seu corpo que eu acho mais bonita',
+        alternativas: ['Boca', 'Sorriso', 'Mãos', 'Olhos'],
+        correta: 'Olhos'
+    },
+    {
+        questão: 'Qual é meu sonho',
+        alternativas: ['Passar em um concurso', 'Ir ao morumbi', 'Comprar um polo', 'Viajar para europa'],
+        correta: 'Ir ao morumbi'
+    },
+    {
+        questão: 'Qual o meu esporte favorito',
+        alternativas: ['Futebol', 'Corrida', 'Dirigir', 'Volei'],
+        correta: 'Futebol'
+    },
+    {
+        questão: 'MInha comida favorita',
+        alternativas: ['Feijoada', 'Panqueca', 'Strogonoff', 'Peixe Frito'],
+        correta: 'Panqueca'
+    }
+]
+ 
 function comecar() {
     let inicio = document.getElementById('start')
     inicio.style.display = 'none'
-
-    let pergunta = document.getElementById('quiz')
-    pergunta.style.display = 'block'
-
-    pergunta.innerHTML = `
-        <h2>Pergunta 1</h2>
-        <p>Onde foi nosso primeiro beijo?</p>
-
-        <button class="alternativa" onclick="verificarResposta('Praça')">Praça</button><br>
-        <button class="alternativa" onclick="verificarResposta('Área de lazer')">Área de lazer</button><br>
-        <button class="alternativa" onclick="verificarResposta('Piscina')">Piscina</button><br>
-        <button class="alternativa" onclick="verificarResposta('Casa do seu pai')">Casa do seu pai</button><br>
-
+ 
+    let quiz = document.getElementById('quiz')
+    quiz.style.display = 'block'
+ 
+    pontos = 0
+    perguntaAtual = 0
+ 
+    mostrarPergunta()
+}
+ 
+function mostrarPergunta() {
+    let quiz = document.getElementById('quiz')
+    let pergunta = perguntas[perguntaAtual]
+ 
+    let html = `
+        <h2>Pergunta ${perguntaAtual + 1}</h2>
+        <p>${pergunta.questão}</p>
+    `
+ 
+    for (let i = 0; i < pergunta.alternativas.length; i++) {
+        html += `<button class="alternativa" onclick="verificarResposta('${pergunta.alternativas[i]}')">${pergunta.alternativas[i]}</button><br>`
+    }
+ 
+    html += `<input type="button" value="Voltar ao início" onclick="voltarInicio()">`
+ 
+    quiz.innerHTML = html
+}
+ 
+function verificarResposta(resposta) {
+ 
+    if (resposta == perguntas[perguntaAtual].correta) {
+        pontos++
+    }
+ 
+    perguntaAtual++
+ 
+    if (perguntaAtual < perguntas.length) {
+        mostrarPergunta()
+    } else {
+        mostrarResultado()
+    }
+}
+ 
+function mostrarResultado() {
+    let quiz = document.getElementById('quiz')
+    let mensagem = ''
+ 
+    if (pontos == 5) {
+        mensagem = 'Você realmente me conhece! ❤️'
+    } else if (pontos >= 3) {
+        mensagem = 'Até que você me conhece bem! 😂'
+    } else {
+        mensagem = 'Precisamos conversar... 👀'
+    }
+ 
+    quiz.innerHTML = `
+        <h2>${mensagem}</h2>
+        <p>Você acertou ${pontos} de ${perguntas.length} perguntas!</p>
         <input type="button" value="Voltar ao início" onclick="voltarInicio()">
     `
 }
-
+ 
 function voltarInicio() {
     let voltar = document.getElementById('start')
     voltar.style.display = 'block'
-
+ 
     let quiz = document.getElementById('quiz')
     quiz.style.display = 'none'
-
+ 
     pontos = 0
-    perguntaAtual = 1
+    perguntaAtual = 0
 }
-
-function verificarResposta(resposta) {
-
-    if (perguntaAtual == 1) {
-
-        if (resposta == "Área de lazer") {
-            pontos++
-        }
-
-        perguntaAtual = 2
-
-        let pergunta = document.getElementById('quiz')
-
-        pergunta.innerHTML = `
-            <h2>Pergunta 2</h2>
-            <p>Qual time eu torço?</p>
-
-            <button class="alternativa" onclick="verificarResposta('Fluminense')">Fluminense</button><br>
-            <button class="alternativa" onclick="verificarResposta('São paulo correia')">São paulo correia</button><br>
-            <button class="alternativa" onclick="verificarResposta('Duque de caxias')">Duque de caxias</button><br>
-            <button class="alternativa" onclick="verificarResposta('São Paulo')">São Paulo</button><br>
-
-            <input type="button" value="Voltar ao início" onclick="voltarInicio()">
-        `
-    }
-
-    else if (perguntaAtual == 2) {
-
-        if (resposta == "São Paulo") {
-            pontos++
-        }
-
-        perguntaAtual = 3
-
-        let pergunta = document.getElementById('quiz')
-
-        pergunta.innerHTML = `
-            <h2>Pergunta 3</h2>
-            <p>Qual a cor da camisa que estava quando te conheci?</p>
-
-            <button class="alternativa" onclick="verificarResposta('Azul')">Azul</button><br>
-            <button class="alternativa" onclick="verificarResposta('Verde')">Verde</button><br>
-            <button class="alternativa" onclick="verificarResposta('Amarelo')">Amarelo</button><br>
-            <button class="alternativa" onclick="verificarResposta('Branco')">Branco</button><br>
-
-            <input type="button" value="Voltar ao início" onclick="voltarInicio()">
-        `
-    }
-
-    else if (perguntaAtual == 3) {
-
-        if (resposta == "Branco") {
-            pontos++
-        }
-
-        perguntaAtual = 4
-
-        let pergunta = document.getElementById('quiz')
-
-        pergunta.innerHTML = `
-            <h2>Pergunta 4</h2>
-            <p>Onde foi nosso primeiro encontro?</p>
-
-            <button class="alternativa" onclick="verificarResposta('Seu bastião')">Seu Bastião</button><br>
-            <button class="alternativa" onclick="verificarResposta('Alambique')">Alambique</button><br>
-            <button class="alternativa" onclick="verificarResposta('Fogo e brasa')">Fogo e brasa</button><br>
-            <button class="alternativa" onclick="verificarResposta('Forever')">Forever</button><br>
-
-            <input type="button" value="Voltar ao início" onclick="voltarInicio()">
-        `
-    }
-
-    else if (perguntaAtual == 4) {
-
-        if (resposta == "Fogo e brasa") {
-            pontos++
-        }
-
-        perguntaAtual = 5
-
-        let pergunta = document.getElementById('quiz')
-
-        pergunta.innerHTML = `
-            <h2>Pergunta 5</h2>
-            <p>Qual tipo de filme eu gosto de assistir?</p>
-
-            <button class="alternativa" onclick="verificarResposta('Terror')">Terror</button><br>
-            <button class="alternativa" onclick="verificarResposta('Ação')">Ação</button><br>
-            <button class="alternativa" onclick="verificarResposta('Romance')">Romance</button><br>
-            <button class="alternativa" onclick="verificarResposta('Comédia')">Comédia</button><br>
-
-            <input type="button" value="Voltar ao início" onclick="voltarInicio()">
-        `
-    }
-
-    else if (perguntaAtual == 5) {
-
-        if (resposta == "Romance") {
-            pontos++
-        }
-
-        let pergunta = document.getElementById('quiz')
-
-        if (pontos == 5) {
-
-            pergunta.innerHTML = `
-                <h2>Você realmente me conhece! ❤️</h2>
-                <p>Você acertou ${pontos} de 5 perguntas!</p>
-                   <input type="button" value="Voltar ao início" onclick="voltarInicio()">
-            `
-
-        } else if (pontos >= 3) {
-
-            pergunta.innerHTML = `
-                <h2>Até que você me conhece bem! 😂</h2>
-                <p>Você acertou ${pontos} de 5 perguntas!</p>
-                   <input type="button" value="Voltar ao início" onclick="voltarInicio()">
-            `
-
-        } else {
-
-            pergunta.innerHTML = `
-                <h2>Precisamos conversar... 👀</h2>
-                <p>Você acertou ${pontos} de 5 perguntas!</p>
-                   <input type="button" value="Voltar ao início" onclick="voltarInicio()">
-            `
-        }
-    }
-}
-
+ 
