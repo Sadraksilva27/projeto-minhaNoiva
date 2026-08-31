@@ -29,8 +29,8 @@ input{
 .alternativa {
     display: block;
     width: 90px;
-    margin: 5px;
-    height: 40px;
+    margin: 10px;
+    height: 55px;
     border-radius: 10px;
     font-size: 15px;
     cursor: pointer;
